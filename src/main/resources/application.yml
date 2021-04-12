@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    driver-class-name: com.google.cloud.spanner.jdbc.JdbcDriver
+    url: jdbc:cloudspanner:/projects/unified-surfer-310204/instances/development-nc/databases/spanner-db
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: com.google.cloud.spanner.hibernate.SpannerDialect
+        format_sql: true
+        jdbc:
+          batch_size: 100
+        show_sql: true
+  cloud:
+    gcp:
+      spanner:
+        enabled: true
