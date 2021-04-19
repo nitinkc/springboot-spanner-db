@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.4.4'
+	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id "io.freefair.lombok" version "5.3.3.3"
@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'com'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
@@ -16,30 +16,29 @@ repositories {
 }
 
 dependencies {
-//	implementation 'org.springframework.boot:spring-boot-starter'
-//	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: '1.0.0.RELEASE'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.4.4'
+
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'com.google.cloud:spring-cloud-gcp-starter'
+	implementation("com.google.cloud:spring-cloud-gcp-data-spanner")
+	implementation("com.google.cloud:spring-cloud-gcp-starter-data-spanner")
+
 	implementation group: 'com.google.cloud', name: 'google-cloud-spanner-hibernate-dialect', version: '1.5.0'
+	compile "commons-io:commons-io:${commonsIoVersion}"
 
-	//implementation 'org.springframework.boot:spring-boot-starter-web:2.4.4'
-	//implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.4.4'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.4.4'
-	//implementation 'com.google.cloud:google-cloud-spanner-hibernate-dialect:1.5.0'
-	//implementation 'com.google.cloud:google-cloud-spanner-jdbc:2.0.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	compile 'net.sf.ehcache:ehcache'
 	testImplementation 'junit:junit:4.13.2'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.4.4'
-	testImplementation 'org.mockito:mockito-core:3.9.0'
-	testImplementation 'com.mockrunner:mockrunner-jdbc:2.0.6'
-	testImplementation 'org.apache.logging.log4j:log4j-1.2-api:2.14.1'
-	testImplementation 'org.apache.logging.log4j:log4j-core:2.14.1'
-	testImplementation 'org.assertj:assertj-core:3.19.0'
-
-	implementation group: 'org.springframework.cloud', name: 'spring-cloud-gcp-starter-data-spanner', version: '1.2.6.RELEASE'
-
-
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
-
+dependencyManagement {
+	imports {
+		mavenBom "com.google.cloud:spring-cloud-gcp-dependencies:${springCloudGcpVersion}"
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
 test {
 	useJUnitPlatform()
 }
