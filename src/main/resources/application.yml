@@ -1,9 +1,10 @@
 spring:
   datasource:
     driver-class-name: com.google.cloud.spanner.jdbc.JdbcDriver
-    url: jdbc:cloudspanner:/projects/unified-surfer-310204/instances/development-nc/databases/spanner-db
+    url: jdbc:cloudspanner:/projects/tat-twam-asi/instances/development-nc/databases/spanner-db
   jpa:
     hibernate:
+      #ddl-auto: update # Recreates DB each time
       ddl-auto: update
     properties:
       hibernate:
@@ -16,3 +17,10 @@ spring:
     gcp:
       spanner:
         enabled: true
+        project-id: tat-twam-asi
+        instance-id: development-nc
+        database: spanner-db
+        writeSessionsFraction: 1
+      project-id: tat-twam-asi
+      credentials:
+        scopes: https://www.googleapis.com/auth/spanner.admin,https://www.googleapis.com/auth/spanner.data
