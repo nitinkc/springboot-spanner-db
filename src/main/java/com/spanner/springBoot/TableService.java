@@ -1,7 +1,7 @@
 package com.spanner.springBoot;
 
 import com.google.cloud.spring.data.spanner.core.SpannerTemplate;
-import model.spanner.Trader;
+import model.spanner.Singers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ public class TableService {
     private SpannerTemplate spannerTemplate;
     public void saveTrader() {
 
-        Trader t = new Trader();
+        Singers t = new Singers();
         t.setTraderId(UUID.randomUUID());
         t.setFirstName("Nitin");
         t.setLastName("Chaurasia");

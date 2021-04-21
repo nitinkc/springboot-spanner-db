@@ -11,13 +11,16 @@ import java.util.UUID;
 
 @Table
 @Data
-public class Trader {
+public class Singers {
 
     @PrimaryKey
-    @Column(name = "trader_id")
-    UUID traderId;
+    @Column(name = "SingerId")
+    Integer singerId;
 
+    @Column(name = "FirstName")
     String firstName;
+
+    @Column(name = "LastName")
     String lastName;
 
     @NotMapped

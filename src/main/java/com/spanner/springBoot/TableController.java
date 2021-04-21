@@ -15,5 +15,4 @@ public class TableController {
         tableService.saveTrader();
         return "Test Successful";
     }
-
 }
