@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Test {
-    public static void main(String[] args) {
+   /* public static void main(String[] args) /*{
 
         //Range<Integer> singer = Range.closed(1000, 1334);
 
@@ -18,7 +18,7 @@ public class Test {
         Map<Integer,Integer> map = new HashMap<>();
         int key = 100;
 
-        /*for (int s: singer) {
+        *//*for (int s: singer) {
             for (int album = 1; album < (int) Math.floor(Math.random() * (max - min + 1) + min); album++) {
                 System.out.println(s);
                 map.put(key++, s);
@@ -30,7 +30,7 @@ public class Test {
                 for (int singers = 1; singers < (int)Math.floor(Math.random()*(max-min+1)+min); singers++)
                 System.out.println(songs + ":" + album + ":" + singers);
             }
-        }*/
+        }*//*
 
         List<Integer> list = Arrays.asList(1001000,
                 1011000,
@@ -939,5 +939,5 @@ public class Test {
             }
         }
 
-    }
+    }*/
 }
