@@ -1,21 +1,21 @@
 CREATE TABLE Singers (
-  SingerId   INT64 NOT NULL,
-  FirstName  STRING(1024),
-  LastName   STRING(1024),
-  SingerInfo BYTES(MAX),
-) PRIMARY KEY (SingerId);
+  singerId   INT64 NOT NULL,
+  firstName  STRING(1024),
+  lastName   STRING(1024),
+  singerInfo BYTES(MAX),
+) PRIMARY KEY (singerId);
 
 CREATE TABLE Albums (
-  SingerId     INT64 NOT NULL,
-  AlbumId      INT64 NOT NULL,
-  AlbumTitle   STRING(MAX),
-) PRIMARY KEY (SingerId, AlbumId),
+  singerId     INT64 NOT NULL,
+  albumId      INT64 NOT NULL,
+  albumTitle   STRING(MAX),
+) PRIMARY KEY (singerId, albumId),
   INTERLEAVE IN PARENT Singers ON DELETE CASCADE;
 
 CREATE TABLE Songs (
-  SingerId     INT64 NOT NULL,
-  AlbumId      INT64 NOT NULL,
-  TrackId      INT64 NOT NULL,
-  SongName     STRING(MAX),
-) PRIMARY KEY (SingerId, AlbumId, TrackId),
+  singerId     INT64 NOT NULL,
+  albumId      INT64 NOT NULL,
+  trackId      INT64 NOT NULL,
+  songName     STRING(MAX),
+) PRIMARY KEY (singerId, albumId, trackId),
   INTERLEAVE IN PARENT Albums ON DELETE CASCADE;

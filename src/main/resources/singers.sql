@@ -1,4 +1,4 @@
-INSERT INTO Singers (SingerId, FirstName,LastName,SingerInfo)
+INSERT INTO Singers (singerId, firstName,lastName,singerInfo)
 VALUES
 (1001,'Tomeka','Vasquez',NULL),
 (1002,'Morton','Brady',NULL),

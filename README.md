@@ -8,6 +8,21 @@ update spanner-db \
 --instance=development-nc \
 --ddl="$(<schema.ddl)"
 
+gcloud spanner databases ddl \
+update spanner-db \
+--instance=development-nc \
+--ddl="$(<table.ddl)"
+
+gcloud spanner databases execute-sql spanner-db --instance=development-nc \
+--sql="$(<singers.sql)"
+
+gcloud spanner databases execute-sql spanner-db --instance=development-nc \
+--sql="$(<albums.sql)"
+
+gcloud spanner databases execute-sql spanner-db --instance=development-nc \
+--sql="$(<songs.sql)"
+
+
 
 [Follow this link for detailed description of Data migration](http://nitinkc.github.io/gcp/MySql-to-Spanner-migration/)
 

@@ -14,10 +14,10 @@ public class TableService {
     public void saveTrader() {
 
         Singers t = new Singers();
-        t.setTraderId(UUID.randomUUID());
-        t.setFirstName("Nitin");
-        t.setLastName("Chaurasia");
-        t.setTemporaryNumber(22D);
+//        t.setTraderId(UUID.randomUUID());
+//        t.setFirstName("Nitin");
+//        t.setLastName("Chaurasia");
+//        t.setTemporaryNumber(22D);
         spannerTemplate.upsert(t);
 
     }
