@@ -3,9 +3,14 @@
 
 ### Create Spanner table from Cloud Console
 
+```shell
+#INSTANCE=development-nc
+INSTANCE=cwow-spanner-lab-f8ef
+DB=spanner-db
+
 gcloud spanner databases ddl \
-update spanner-db \
---instance=development-nc \
+update $DB \
+--instance= $INSTANCE \
 --ddl="$(<schema.ddl)"
 
 gcloud spanner databases ddl \
@@ -21,8 +26,11 @@ gcloud spanner databases execute-sql spanner-db --instance=development-nc \
 
 gcloud spanner databases execute-sql spanner-db --instance=development-nc \
 --sql="$(<songs.sql)"
+```
 
-
+Or just run
+ 
+zsh src/main/resources/db/db.sh
 
 [Follow this link for detailed description of Data migration](http://nitinkc.github.io/gcp/MySql-to-Spanner-migration/)
 

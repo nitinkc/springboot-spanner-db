@@ -5,23 +5,31 @@ import com.google.cloud.spring.data.spanner.core.mapping.NotMapped;
 import com.google.cloud.spring.data.spanner.core.mapping.PrimaryKey;
 import com.google.cloud.spring.data.spanner.core.mapping.Table;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
 import java.util.UUID;
 
-@Table
+@Table(name = Singers.NAME )
 @Data
+@EqualsAndHashCode
+@NoArgsConstructor
 public class Singers {
+    public static final String NAME = "Singers";
 
     @PrimaryKey
-    @Column(name = "SingerId")
+    @Column(name = "singerId")
     Integer singerId;
 
-    @Column(name = "FirstName")
+    @Column(name = "firstName")
     String firstName;
 
-    @Column(name = "LastName")
+    @Column(name = "lastName")
     String lastName;
+
+    @Column(name = "singerInfo")
+    String singerInfo;
 
     @NotMapped
     Double temporaryNumber;
