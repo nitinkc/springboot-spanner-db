@@ -1,10 +1,12 @@
 package com.spanner.springBoot.dao.spanner;
 
-import com.google.cloud.spring.data.spanner.core.SpannerTemplate;
 import com.spanner.springBoot.dao.GenericReadDao;
+import lombok.RequiredArgsConstructor;
+import org.springframework.cloud.gcp.data.spanner.core.SpannerTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public abstract class SpannerReadDao<T> implements GenericReadDao<T> {
 
     private SpannerTemplate spannerTemplate;

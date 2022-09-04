@@ -1,1 +1,1 @@
-SELECT * from Singers where firstName LIKE @firstChar
+SELECT * from Singers where first_Name LIKE @firstChar

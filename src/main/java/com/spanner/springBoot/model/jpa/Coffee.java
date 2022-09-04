@@ -1,4 +1,4 @@
-package model.jpa;
+package com.spanner.springBoot.model.jpa;
 
 import java.util.UUID;
 import javax.persistence.Entity;
@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Type;
 
 @Entity
 @RequiredArgsConstructor
@@ -16,10 +15,10 @@ public class Coffee {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Type(type = "uuid-char")
+//  @Type(type = "uuid-char") //Not wprking with Spanner
   private UUID id;
 
-  private String size;
+  private String sizes;
 
   @ManyToOne
   private Customer customer;

@@ -1,10 +1,10 @@
 package com.spanner.springBoot.dao.spanner;
 
 import com.google.cloud.spanner.Struct;
-import com.google.cloud.spring.data.spanner.core.SpannerQueryOptions;
-import com.google.cloud.spring.data.spanner.core.SpannerReadOptions;
-import com.google.cloud.spring.data.spanner.core.SpannerTemplate;
 import lombok.AllArgsConstructor;
+import org.springframework.cloud.gcp.data.spanner.core.SpannerQueryOptions;
+import org.springframework.cloud.gcp.data.spanner.core.SpannerReadOptions;
+import org.springframework.cloud.gcp.data.spanner.core.SpannerTemplate;
 import org.springframework.stereotype.Service;
 
 @Service

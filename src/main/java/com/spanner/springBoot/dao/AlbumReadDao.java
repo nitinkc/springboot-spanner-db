@@ -1,12 +1,13 @@
 package com.spanner.springBoot.dao;
 
-import model.spanner.Albums;
-import model.spanner.Singers;
+import com.spanner.springBoot.dto.AlbumsDto;
+import com.spanner.springBoot.model.spanner.Albums;
+import com.spanner.springBoot.model.spanner.Singers;
 
 import java.util.List;
 
-public interface AlbumReadDao {
+public interface AlbumReadDao{
 
-    public List<Albums> getAlbumsBySinger(List<Singers> singers);
+    public List<AlbumsDto> getAlbumsBySingerIds(List<String> singerIds);
 
 }

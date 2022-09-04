@@ -5,16 +5,26 @@
 # Create Database
 #gcloud spanner databases create spanner-db --instance=devevelopment-2\
 
+#Set the profile
+gcloud config configurations activate lab
+
+cd /src/main/resources/db
+
+#Create Tables
 gcloud spanner databases ddl \
-update spanner-db \
+update reports-poc \
 --instance=devevelopment-2 \
---ddl="$(<table.ddl)"
+--ddl="$(<table_ddl.sql)"
 
-gcloud spanner databases execute-sql spanner-db --instance=devevelopment-2 \
---sql="$(<singers.sql)"
+#Insert Data
+gcloud spanner databases execute-sql reports-poc --instance=devevelopment-2 \
+--sql="$(<data/singers.sql)"
 
-gcloud spanner databases execute-sql spanner-db --instance=devevelopment-2 \
---sql="$(<albums.sql)"
+gcloud spanner databases execute-sql reports-poc --instance=devevelopment-2 \
+--sql="$(<data/albums.sql)"
 
-gcloud spanner databases execute-sql spanner-db --instance=devevelopment-2 \
---sql="$(<songs.sql)"
+gcloud spanner databases execute-sql reports-poc --instance=devevelopment-2 \
+--sql="$(<data/songs.sql)"
+
+gcloud spanner databases execute-sql reports-poc --instance=devevelopment-2 \
+--sql="$(<data/refData.sql)"

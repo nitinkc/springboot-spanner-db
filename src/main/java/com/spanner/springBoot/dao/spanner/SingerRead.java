@@ -1,23 +1,23 @@
 package com.spanner.springBoot.dao.spanner;
 
-import com.google.cloud.spring.data.spanner.core.SpannerQueryOptions;
-import com.google.cloud.spring.data.spanner.core.SpannerReadOptions;
-import com.google.cloud.spring.data.spanner.core.SpannerTemplate;
 import com.spanner.springBoot.Utilities.SqlFileUtil;
 import com.spanner.springBoot.Utilities.TransactionalReadOnly;
 import com.spanner.springBoot.dao.SingerReadDao;
-import lombok.RequiredArgsConstructor;
+import com.spanner.springBoot.dto.SingersDto;
 import lombok.extern.slf4j.Slf4j;
-import model.spanner.Singers;
+import com.spanner.springBoot.model.spanner.Singers;
 
 import com.google.cloud.spanner.Statement;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
+import org.springframework.cloud.gcp.data.spanner.core.SpannerQueryOptions;
+import org.springframework.cloud.gcp.data.spanner.core.SpannerReadOptions;
+import org.springframework.cloud.gcp.data.spanner.core.SpannerTemplate;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Repository
+
 @Slf4j
+@Component
 public class SingerRead extends SpannerReadDao<Singers> implements SingerReadDao {
     public SingerRead(SpannerTemplate spannerTemplate) {
         super(spannerTemplate);
@@ -34,17 +34,17 @@ public class SingerRead extends SpannerReadDao<Singers> implements SingerReadDao
 
     @Override
     @TransactionalReadOnly
-    public List<Singers> findSingersByFirstChar(Character c){
+    public List<SingersDto> findSingersByFirstChar(Character c){
         String firstChar = c + "%";
 
-        Statement.Builder build = Statement.newBuilder(SELECT_SINGERS_BY_FIRST_CHAR)
-                .bind("firstChar").to("A%");
+        Statement.Builder builder = Statement
+                .newBuilder(SELECT_SINGERS_BY_FIRST_CHAR)
+                .bind("firstChar")
+                .to(firstChar);
 
-        log.info(build.build().getSql().toString());
-        List<Singers> list = this.getSpannerTemplate()
-                .query(struct -> getSpannerTemplate()
-                                .getSpannerEntityProcessor()
-                                .read(Singers.class, struct), build.build(), SPANNER_OPTIONS);
+        log.info(builder.build().getSql().toString());
+        List<SingersDto> list = this.getSpannerTemplate().query(SingersDto.class,builder.build(), SPANNER_OPTIONS );
+        log.info("Fetch a total of Singers : "  + list.size());
 
         return list;
     }

@@ -1,7 +1,7 @@
 package com.spanner.springBoot.dao.spanner;
 
-import com.google.cloud.spring.data.spanner.core.SpannerTemplate;
 import lombok.AllArgsConstructor;
+import org.springframework.cloud.gcp.data.spanner.core.SpannerTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;

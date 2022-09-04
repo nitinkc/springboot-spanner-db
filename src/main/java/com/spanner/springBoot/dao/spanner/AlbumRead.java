@@ -1,15 +1,21 @@
 package com.spanner.springBoot.dao.spanner;
 
-import com.google.cloud.spring.data.spanner.core.SpannerQueryOptions;
-import com.google.cloud.spring.data.spanner.core.SpannerReadOptions;
-import com.google.cloud.spring.data.spanner.core.SpannerTemplate;
+
+import com.google.cloud.spanner.Statement;
 import com.spanner.springBoot.Utilities.SqlFileUtil;
+import com.spanner.springBoot.Utilities.TransactionalReadOnly;
 import com.spanner.springBoot.dao.AlbumReadDao;
-import model.spanner.Albums;
-import model.spanner.Singers;
+import com.spanner.springBoot.dto.AlbumsDto;
+import com.spanner.springBoot.model.spanner.Albums;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.gcp.data.spanner.core.SpannerQueryOptions;
+import org.springframework.cloud.gcp.data.spanner.core.SpannerReadOptions;
+import org.springframework.cloud.gcp.data.spanner.core.SpannerTemplate;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Slf4j
+@Component
 public class AlbumRead extends SpannerReadDao<Albums> implements AlbumReadDao {
     public AlbumRead(SpannerTemplate spannerTemplate) {
         super(spannerTemplate);
@@ -25,7 +31,16 @@ public class AlbumRead extends SpannerReadDao<Albums> implements AlbumReadDao {
     }
 
     @Override
-    public List<Albums> getAlbumsBySinger(List<Singers> singers) {
-        return null;
+    @TransactionalReadOnly
+    public List<AlbumsDto> getAlbumsBySingerIds(List<String> singerIds) {
+        Statement.Builder builder = Statement
+                .newBuilder(FIND_ALBUMS_BY_SINGERS)
+                .bind("singerIds").toStringArray(singerIds);
+
+        log.info(builder.build().getSql().toString());
+        List<AlbumsDto> list = this.getSpannerTemplate().query(AlbumsDto.class,builder.build(), SPANNER_OPTIONS );
+        log.info("Fetch a total of Albums : "  + list.size());
+
+        return list;
     }
 }

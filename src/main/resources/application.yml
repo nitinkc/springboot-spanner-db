@@ -1,36 +1,19 @@
+server:
+  port: 9080
 spring:
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     driver-class-name: com.google.cloud.spanner.jdbc.JdbcDriver
-    url: jdbc:cloudspanner:/projects/cwow-spanner-lab-f8ef/instances/devevelopment-2/databases/spanner-db
-  jpa:
-    hibernate:
-      #ddl-auto: update # Recreates DB each time
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: com.google.cloud.spanner.hibernate.SpannerDialect
-        format_sql: true
-        jdbc:
-          batch_size: 100
-        show_sql: true
+    url: jdbc:cloudspanner:/projects/cwow-spanner-lab-f8ef/instances/devevelopment-2/databases/reports-poc
   cloud:
     gcp:
       spanner:
         enabled: true
         project-id: cwow-spanner-lab-f8ef
         instance-id: devevelopment-2
-        database: spanner-db
+        database: reports-poc
         writeSessionsFraction: 1
       project-id: cwow-spanner-lab-f8ef
       credentials:
         scopes: https://www.googleapis.com/auth/spanner.admin,https://www.googleapis.com/auth/spanner.data
-
-logging:
-  level:
-    ROOT: DEBUG
-    org:
-      springframework:
-        cloud:
-          gcp:
-            data:
-              spanner: DEBUG
